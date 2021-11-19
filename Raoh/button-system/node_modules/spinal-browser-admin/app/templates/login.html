@@ -1,0 +1,43 @@
+<div style="height: calc(100% - 52px);background-color: #292929; overflow-y: auto;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <form name="conf"
+              class="well"
+              novalidate=""
+              ng-submit="ConnectBtn(conf)"
+              style="min-height: 20px;padding: 19px; margin-top:100px;margin-bottom: 20px;font-size:15px;background-color:#e4e7e8;border-color: transparent;color:#707478;">
+          <img src="assets/imgs/logo_medium.png"
+               style="max-width: 100%;" />
+          <div class="form-group">
+            <label ng-class="{ 'has-errors' : conf.userEmail.$invalid && conf.$submitted, 'no-errors' : conf.userEmail.$valid  && conf.$submitted}"
+          
+                   class="font-word">Username
+          </label>
+            <input ng-model="conf.email"
+                   name="userEmail"
+                   type="text"
+                   placeholder="Username"
+                   required
+                   class="form-control"
+                   style="border-color:transparent">
+          </div>
+          <div class="form-group">
+            <label ng-class="{ 'has-errors' : conf.password.$invalid && conf.$submitted, 'no-errors' : conf.password.$valid  && conf.$submitted}"
+          
+                   class="font-word">Password</label>
+            <input ng-model="conf.password"
+                   type="password"
+                   name="password"
+                   placeholder="Password"
+                   required
+                   class="form-control"
+                   style="border-color:transparent">
+          </div>
+          <button type="submit"
+                  class="btn btn-success">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

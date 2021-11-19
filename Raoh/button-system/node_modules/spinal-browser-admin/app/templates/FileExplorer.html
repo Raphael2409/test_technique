@@ -1,0 +1,136 @@
+<md-content ng-click="onFocus()"
+            style="height: inherit;cursor: auto;"
+            folder-drop
+            folderdrop-events="folderDropCfg"
+            ng-class="{over:dropOnFolder}">
+  <!-- PATH  BAR -->
+  <div class="fs-layer-header">
+    <div style="float:left;"
+         class="col-xs-10">
+      <ol class="breadcrumb"
+          style="margin-bottom: unset; background-color: unset; padding: 0;">
+        <li class="breadcrumb-item"
+            ng-repeat="dir in fs_path"
+            ng-class="{active : $index === (fs_path.length - 1)}"
+            ng-click="fsmoveToParent(dir)">{{dir.name}}</li>
+      </ol>
+    </div>
+    <div style="float:left;height:20px;padding-right: 0px;"
+         class="col-xs-2">
+      <md-menu md-position-mode="target-right target"
+               style="float: right;margin-left: 5px;">
+        <md-button aria-label="menu"
+                   class="md-icon-button fs-btn-menu"
+                   ng-click="open_context_menu_curr_dir($mdMenu,$event);">
+          <ng-md-icon icon="more_vert"
+                      style="fill: white;height: 10px;"></ng-md-icon>
+        </md-button>
+        <md-menu-content width="4"
+                         style="background-color: #FFF;">
+          <md-menu-item ng-repeat="item in context_menu_curr_dir"
+                        class="md-indent md-dense compact"
+                        style="position: relative;">
+            <ng-md-icon icon="{{item.icon}}"
+                        style="fill: rgba(0,0,0,0.54);height: 20px;"
+                        class="md-avatar-icon"></ng-md-icon>
+            <md-button ng-click="context_menu_curr_dir_action($event, item, file);"
+                       style="color:#000">
+              {{item.label}}
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </div>
+
+  <!-- TABLE OF THE DIRECTORY -->
+  <md-table-container style="height: calc(100% - 35px);">
+    <table md-table
+           style="table-layout: fixed;min-width: 575px;max-height: 100%;">
+      <thead md-head>
+        <tr style="height: 25px;">
+          <th md-column
+              style="width: 30%;">Name</th>
+          <th md-column>Type</th>
+          <!-- <th md-column>Owner</th> -->
+          <th md-column>Created at</th>
+          <th md-column
+              style="padding: 0;">Last Modified</th>
+
+          <th md-column 
+              style="width: 30px;text-align: center">Visa</th>
+
+          <th md-column
+              style="width: 45px;"></th>
+        </tr>
+      </thead>
+      <tbody md-body
+             id="tablebody"
+             style="overflow-y: auto; "
+             ng-cloak>
+        <tr class="selectable-node fs-drag-drop"
+            md-select-id="name"
+            ng-repeat="file in directory"
+            file-obj="file"
+            file-list="directory"
+            ng-class="{fsfileselected:file.selected,over:file.over,selectdrop:file.selectdrop}"
+      
+            drag-events="dragCfg"
+            ng-click="selectFile($event,file)"
+            ng-dblclick="ondblclick(file)"
+            ng-right-click="onrightclick($index)"
+            drag-drop>
+          <td md-cell
+              class="fs-file-cell"
+              style="position: relative;">
+            <ng-md-icon icon="{{getIcon(file.model_type)}}"
+                        ng-attr-style="{{getStyle(file)}}"
+                        class="md-avatar-icon"></ng-md-icon>
+            <div style="float: left;margin-left: 20px;width: -webkit-fill-available;overflow: hidden;text-overflow: ellipsis;;">
+              <span style="white-space: nowrap;">
+                <md-tooltip md-delay="500">{{file.name}}</md-tooltip>{{file.name}}</span>
+            </div>
+            <md-progress-linear ng-if="file.upload_pecent"
+                                style="bottom: 0;right: 0;position: absolute;"
+                                ng-class="{'md-warn': file.error}"
+                                md-mode="determinate"
+                                value="{{file.upload_pecent}}"></md-progress-linear>
+          </td>
+          <td md-cell>{{file.model_type}}</td>
+          <!-- <td md-cell>{{file.owner}}</td> -->
+          <td md-cell>{{getTime(file.created_at)}}</td>
+          <td md-cell
+              style="padding: 0;">{{getTime(file.log[file.log.length -1].date)}}</td>
+          
+          <td md-cell>{{ file.visa >= 0 ? file.visa + "%" : "-" }}</td>
+          
+          <td>
+            <md-menu>
+              <md-button aria-label="+"
+                         class="md-icon-button"
+                         ng-attr-id="{{ 'fe-menu-'+uid+'-' + $index }}"
+                         ng-click="open_context_menu_file($mdMenu, $event, file);">
+                <ng-md-icon icon="more_vert"
+                            style="fill: white;height: 24px;"></ng-md-icon>
+              </md-button>
+              <md-menu-content width="4"
+                               style="background-color: #FFF;">
+                <md-menu-item ng-repeat="item in context_menu_file"
+                              class="md-indent md-dense compact"
+                              style="position: relative;">
+                  <ng-md-icon icon="{{item.icon}}"
+                              style="fill: rgba(0,0,0,0.54);height: 20px;"
+                              class="md-avatar-icon"></ng-md-icon>
+                  <md-button ng-click="context_menu_file_action($event, item, file);"
+                             style="color:#000">
+                    {{item.label}}
+                  </md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+</md-content>

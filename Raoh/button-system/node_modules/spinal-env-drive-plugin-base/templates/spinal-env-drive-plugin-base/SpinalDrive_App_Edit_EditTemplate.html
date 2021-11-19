@@ -1,0 +1,48 @@
+<md-dialog aria-label="Sharing setting">
+  <md-dialog-content style="padding-left: 10px;padding-right: 10px;">
+    <h3>Edit Setting</h3>
+    <h5 style="margin-top: 30px;margin-bottom: 35px;">Type: {{editModelContruct}}</h5>
+    <form name="editForm"
+          ng-submit="submitDialog()">
+      <md-input-container ng-if="isStr(editModel)"
+                          style="margin: 0;"
+                          class="md-block">
+        <label>Data</label>
+        <input ng-model="modelData"
+               name="modelData"
+               md-autofocus>
+      </md-input-container>
+      <md-input-container ng-if="isVal(editModel)"
+                          style="margin: 0;"
+                          class="md-block">
+        <label>Data</label>
+        <input type="number"
+               name="modelData"
+               ng-model="modelData"
+               md-autofocus>
+      </md-input-container>
+      <md-input-container ng-if="isBool(editModel)"
+                          style="margin: 0;"
+                          class="md-block">
+        <label>Data</label>
+        <md-select name="modelData"
+                   ng-model="modelData"
+                   md-autofocus>
+          <md-option value=true>true</md-option>
+          <md-option value=false>false</md-option>
+        </md-select>
+      </md-input-container>
+      <p class="p-error fadein"
+         ng-repeat="error_msg in error_msgs">{{error_msg}}</p>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-buttongfngf ng-click="cancelDialog()"
+                    class="md-primary">
+      Cancel
+      </md-button>
+      <md-button ng-click="submitDialog()"
+                 class="md-primary">
+        Submit
+      </md-button>
+  </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,170 @@
+<md-dialog aria-label="Edit User"
+           style="width: 65%;max-width: 800px;">
+  <md-toolbar style="background-color:black;">
+    <div class="md-toolbar-tools">
+      <h2 style="color: white;">Edit User : {{userEdit.name}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button"
+                 ng-click="cancel()">
+        <ng-md-icon icon="close"
+                    style="fill:white;"
+                    aria-label="Close dialog"
+                    class=""></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content>
+    <div class="md-dialog-content">
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Edit Permission level</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content layout="row"
+                         layout-align="center">
+          <form name="permiForm"
+                ng-submit="changeType(userType)"
+                style="width: 100%;"
+                ng-cloak>
+            <md-input-container class="md-block">
+              <label>Permission level</label>
+              <md-select name="type"
+                         ng-model="userType"
+                         required>
+                <md-option value="1">User</md-option>
+                <md-option value="0">Admin</md-option>
+                <!-- <md-option value="2">Suspended</md-option> -->
+              </md-select>
+            </md-input-container>
+            <md-dialog-actions layout="row">
+              <span flex></span>
+              <md-button class="md-fab"
+                         aria-label="Confirm"
+                         style="height: 40px; width: 40px;"
+                         ng-disabled="permiForm.$invalid"
+                         ng-click="changeType(userType)">
+                <md-tooltip>Confirm</md-tooltip>
+                <ng-md-icon icon="done"
+                            style="fill:white;"
+                            aria-label="Confirm"
+                            class=""></ng-md-icon>
+              </md-button>
+            </md-dialog-actions>
+          </form>
+        </md-card-content>
+      </md-card>
+
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Change Password</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content layout="row"
+                         layout-align="center">
+          <form name="newpassword"
+                ng-submit="changePasswordSubmit(newpassword, change_password, doSendMail)"
+        
+                style="width: 100%;"
+                ng-cloak>
+            <md-input-container class="md-block">
+              <label>New Password</label>
+              <input type="{{passwordInputType}}"
+                     ng-model="change_password.password"
+                     name="password"
+                     required>
+              <div ng-messages="newpassword.password.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Confim new Password</label>
+              <input type="{{passwordInputType}}"
+                     ng-model="change_password.confirm_password"
+                     name="confirmPassword"
+                     required
+                     compare-to="change_password.password">
+              <div ng-messages="newpassword.confirmPassword.$error"
+                   class="form-errors first-name-error">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="compareTo">Password fields do not match!</div>
+              </div>
+            </md-input-container>
+            <md-dialog-actions layout="row"
+                               style="padding-left: 0;">
+              <md-button class="md-fab"
+                         aria-label="viewpassword"
+                         style="height: 40px; width: 40px;"
+                         ng-mousedown='showPassword()'
+                         ng-mouseup="hidePassword() "
+                         ng-mouseleave="hidePassword()">
+                <md-tooltip>Show password</md-tooltip>
+                <ng-md-icon icon="remove_red_eye"
+                            style="fill:white;"
+                            aria-label="view password"
+                            class=""></ng-md-icon>
+              </md-button>
+              <md-button class="md-fab"
+                         aria-label="Generate password"
+                         style="height: 40px; width: 40px;"
+                         ng-click="changePasswordGenerate(change_password)">
+                <md-tooltip>Generate password</md-tooltip>
+                <ng-md-icon icon="shuffle"
+                            style="fill:white;"
+                            aria-label="Generate password"
+                            class=""></ng-md-icon>
+              </md-button>
+              <md-button class="md-fab"
+                         aria-label="clipboardCopy"
+                         ng-disabled="newpassword.password.$invalid"
+                         style="height: 40px; width: 40px;"
+                         ng-click="changePasswordCopyToClipboard(change_password)">
+                <md-tooltip>Copy to clipboard</md-tooltip>
+                <ng-md-icon icon="content_copy"
+                            style="fill:white;"
+                            aria-label="clipboardCopy"
+                            class=""></ng-md-icon>
+              </md-button>
+              <span flex></span>
+              <md-checkbox ng-model="doSendMail"
+                           style="margin-bottom: 0;">
+                Prepare a email
+              </md-checkbox>
+              <md-button class="md-fab"
+                         aria-label="Confirm"
+                         style="height: 40px; width: 40px;"
+                         ng-disabled="newpassword.$invalid"
+                         ng-click="changePasswordSubmit(newpassword, change_password, doSendMail)">
+                <md-tooltip>Confirm</md-tooltip>
+                <ng-md-icon icon="done"
+                            style="fill:white;"
+                            aria-label="Confirm"
+                            class=""></ng-md-icon>
+              </md-button>
+            </md-dialog-actions>
+          </form>
+        </md-card-content>
+      </md-card>
+
+
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Delete Account</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content layout="row"
+                         layout-align="center">
+          <md-button class="md-raised md-warn"
+                     style="width: 100%;"
+                     ng-click="delete_account(userEdit)">Delete Account</md-button>
+        </md-card-content>
+      </md-card>
+
+    </div>
+  </md-dialog-content>
+
+
+</md-dialog>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>User Application Manager</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/html/user_role_manager/apple-touch-icon.b5b277d1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/html/user_role_manager/favicon-32x32.fe18f7ff.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/html/user_role_manager/favicon-16x16.22fefefa.png">
+  <link rel="manifest" href="/html/user_role_manager/icons/site.webmanifest">
+  <link rel="mask-icon" href="/html/user_role_manager/safari-pinned-tab.9fa23c5c.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/html/user_role_manager/favicon.4e2ccd9b.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="/html/user_role_manager/browserconfig.c244fb28.xml">
+  <base href="/html/user_application_manager/">
+  <style>html {
+      background-color: #303030;
+    }
+
+    .start-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .atom-spinner,
+    .atom-spinner * {
+      box-sizing: border-box;
+    }
+
+    .atom-spinner {
+      height: 60px;
+      width: 60px;
+      overflow: hidden;
+    }
+
+    .atom-spinner .spinner-inner {
+      position: relative;
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+
+    .atom-spinner .spinner-circle {
+      display: block;
+      position: absolute;
+      color: #ff1d5e;
+      font-size: calc(60px * 0.24);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .atom-spinner .spinner-line {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      animation-duration: 1s;
+      border-left-width: calc(60px / 25);
+      border-top-width: calc(60px / 25);
+      border-left-color: #ff1d5e;
+      border-left-style: solid;
+      border-top-style: solid;
+      border-top-color: transparent;
+    }
+
+    .atom-spinner .spinner-line:nth-child(1) {
+      animation: atom-spinner-animation-1 1s linear infinite;
+      transform: rotateZ(120deg) rotateX(66deg) rotateZ(0deg);
+    }
+
+    .atom-spinner .spinner-line:nth-child(2) {
+      animation: atom-spinner-animation-2 1s linear infinite;
+      transform: rotateZ(240deg) rotateX(66deg) rotateZ(0deg);
+    }
+
+    .atom-spinner .spinner-line:nth-child(3) {
+      animation: atom-spinner-animation-3 1s linear infinite;
+      transform: rotateZ(360deg) rotateX(66deg) rotateZ(0deg);
+    }
+
+    @keyframes atom-spinner-animation-1 {
+      100% {
+        transform: rotateZ(120deg) rotateX(66deg) rotateZ(360deg);
+      }
+    }
+
+    @keyframes atom-spinner-animation-2 {
+      100% {
+        transform: rotateZ(240deg) rotateX(66deg) rotateZ(360deg);
+      }
+    }
+
+    @keyframes atom-spinner-animation-3 {
+      100% {
+        transform: rotateZ(360deg) rotateX(66deg) rotateZ(360deg);
+      }
+    }</style>
+<link rel="stylesheet" href="/html/user_role_manager/app.c328ef1a.css"></head>
+
+<body>
+  <div class="start-spinner">
+
+    <div class=" atom-spinner">
+      <div class="spinner-inner">
+        <div class="spinner-line"></div>
+        <div class="spinner-line"></div>
+        <div class="spinner-line"></div>
+        <!--Chrome renders little circles malformed :(-->
+        <div class="spinner-circle">
+          &#9679;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="app"></div>
+
+  <script src="/html/user_role_manager/app.c328ef1a.js"></script>
+
+  <script>
+  </script>
+</body>
+
+</html>

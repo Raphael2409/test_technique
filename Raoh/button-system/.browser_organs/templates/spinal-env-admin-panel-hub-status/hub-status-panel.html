@@ -1,0 +1,70 @@
+<style>
+  .sparkline {
+    display: block;
+    width: 100%;
+    margin: 5px;
+  }
+
+  .sparkline svg {
+    overflow: visible;
+  }
+
+  .sparkline path {
+    stroke: #f8f8f8;
+    stroke-width: 3;
+    fill: none;
+  }
+
+  .sparkline circle.dots {
+    fill: #f8f8f8;
+  }
+</style>
+
+<md-list class="">
+  <md-list-item class="md-1-line"
+                style="padding: 0 8px;">
+    <md-button class="flex"
+               ng-click="backupClick()"
+               ng-disabled="isBackupDisabled()">
+      Create Backup
+    </md-button>
+    <md-button class="flex"
+               ng-click="garbageCollectorClick()"
+               ng-disabled="isGrbageCollectorDisabled()">
+      Run garbage collector
+    </md-button>
+  </md-list-item>
+  <md-subheader class="md-no-sticky">Status</md-subheader>
+</md-list>
+
+<md-table-container>
+  <table md-table
+         style="max-height: 100%;">
+    <thead md-head>
+      <tr style="height: 25px;">
+        <th md-column
+            style="width: 30%;">Name</th>
+        <th md-column>Value</th>
+        <th md-column>Log</th>
+      </tr>
+    </thead>
+    <tbody md-body
+           id="tablebody"
+           style="overflow-y: auto; "
+           ng-cloak>
+      <tr ng-repeat="status in statusLst">
+        <td md-cell>
+          {{status.name}}
+        </td>
+        <td md-cell>
+          {{status.value}}
+        </td>
+        <td md-cell>
+          <div class="sparkline"
+               ng-attr-id="{{status.id}}">
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</md-table-container>

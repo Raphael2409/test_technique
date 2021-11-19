@@ -1,0 +1,1 @@
+{"version":3,"file":"AppProfile.js","sourceRoot":"","sources":["../../src/Models/AppProfile.ts"],"names":[],"mappings":";;AAAA,+EAAiE;AAEjE,MAAa,UAAW,SAAQ,oCAAK;IAInC,YAAY,EAAU,EAAE,WAAmB;QACzC,KAAK,EAAE,CAAC;QACR,IAAI,CAAC,QAAQ,CAAC;YACZ,EAAE,EAAE,EAAE;YACN,WAAW,EAAE,WAAW;SACzB,CAAC,CAAA;IACJ,CAAC;CACF;AAXD,gCAWC;AAGD,yCAAU,CAAC,eAAe,CAAC,UAAU,CAAC,CAAC"}

@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "spinal-core-hub",
+      "script": "spinalhub.js",
+      "cwd": "./nerve-center/"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+<md-dialog aria-label="Create User"
+           style="width: 65%;max-width: 800px;">
+  <form name="newuser"
+        ng-submit="newUserOK(newuser, user, doSendMail)"
+        ng-cloak>
+    <md-toolbar style="background-color:black;">
+      <div class="md-toolbar-tools">
+        <h2 style="color: white;">Create User</h2>
+        <span flex></span>
+        <md-button class="md-icon-button"
+                   ng-click="newUserCancel()">
+          <ng-md-icon icon="close"
+                      style="fill:white;"
+                      aria-label="Close dialog"
+                      class=""></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-card>
+          <md-card-content>
+            <md-input-container class="md-block">
+              <label>Login (email)</label>
+              <input type="email"
+                     ng-model="user.name"
+                     name="name"
+                     minlength="10"
+                     maxlength="100"
+                     ng-pattern="/^.+@.+\..+$/"
+                     required/>
+              <div ng-messages="newuser.name.$error">
+                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                  Your email must be between 10 and 100 characters long and look like an e-mail address.
+                </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Password</label>
+              <input type="{{passwordInputType}}"
+                     ng-model="user.password"
+                     name="password"
+                     required/>
+              <div ng-messages="newuser.password.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Confirm Password</label>
+              <input type="{{passwordInputType}}"
+                     ng-model="user.confirm_password"
+                     name="confirmPassword"
+                     required
+                     compare-to="user.password" />
+              <div ng-messages="newuser.confirmPassword.$error"
+                   class="form-errors first-name-error">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="compareTo">Password fields do not match!</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Permission level</label>
+              <md-select ng-model="user.type">
+                <md-option value="1">User</md-option>
+                <md-option value="0">Admin</md-option>
+                <md-option value="2">Suspended</md-option>
+              </md-select>
+            </md-input-container>
+          </md-card-content>
+        </md-card>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row"
+                       style="padding-right: 26px;">
+      <md-button class="md-fab"
+                 aria-label="viewpassword"
+                 style="height: 40px; width: 40px;"
+                 ng-mousedown='showPassword()'
+                 ng-mouseup="hidePassword() "
+                 ng-mouseleave="hidePassword()">
+        <md-tooltip>Show password</md-tooltip>
+        <ng-md-icon icon="remove_red_eye"
+                    style="fill:white;"
+                    aria-label="view password"
+                    class=""></ng-md-icon>
+      </md-button>
+      <md-button class="md-fab"
+                 aria-label="Generate password"
+                 style="height: 40px; width: 40px;"
+                 ng-click="passwordGenerate(user)">
+        <md-tooltip>Generate password</md-tooltip>
+        <ng-md-icon icon="shuffle"
+                    style="fill:white;"
+                    aria-label="Generate password"
+                    class=""></ng-md-icon>
+      </md-button>
+      <md-button class="md-fab"
+                 aria-label="clipboardCopy"
+                 ng-disabled="newuser.password.$invalid"
+                 style="height: 40px; width: 40px;"
+                 ng-click="copyToClipboard(user.password)">
+        <md-tooltip>Copy password to clipboard</md-tooltip>
+        <ng-md-icon icon="content_copy"
+                    style="fill:white;"
+                    aria-label="clipboardCopy"
+                    class=""></ng-md-icon>
+      </md-button>
+      <span flex></span>
+      <md-checkbox ng-model="doSendMail"
+                   style="margin-bottom: 0;">
+        Prepare a email
+      </md-checkbox>
+      <md-button class="md-fab"
+                 aria-label="Confirm"
+                 style="height: 40px; width: 40px;"
+                 ng-disabled="newuser.$invalid"
+                 ng-click="newUserOK(newuser, user, doSendMail)">
+        <md-tooltip>Confirm</md-tooltip>
+        <ng-md-icon icon="done"
+                    style="fill:white;"
+                    aria-label="Confirm"
+                    class=""></ng-md-icon>
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

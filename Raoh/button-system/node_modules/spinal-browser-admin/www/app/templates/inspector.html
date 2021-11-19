@@ -1,0 +1,17 @@
+<div style="height: 100%;"
+     folder-drop
+     folderdrop-events="folderDropCfg">
+  <div class="fs-layer-header">
+    <div style="float:left;"
+         class="col-xs-10">
+      <ol class="breadcrumb"
+          style="margin-bottom: unset; background-color: unset; padding: 0;">
+        <li class="breadcrumb-item"
+            ng-repeat="dir in fs_path"
+            ng-class="{active : $index === (fs_path.length - 1)}">{{dir.name}}</li>
+      </ol>
+    </div>
+  </div>
+
+  <spinal-inspect style="height: calc(100% - 35px);    display: block;"></spinal-inspect>
+</div>

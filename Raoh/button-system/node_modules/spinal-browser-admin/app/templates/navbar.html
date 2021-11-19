@@ -1,0 +1,42 @@
+<md-toolbar class="md-theme-light">
+  <section layout="row"
+           layout-sm="row"
+           layout-align="right center"
+           layout-wrap
+           style="height: 64px;">
+    <a class="dropdown-toggle navbar-text"
+       data-toggle="dropdown"
+       role="button"
+       aria-haspopup="true"
+       aria-expanded="false"
+       style="margin-top: 0px; margin-bottom: 0px;">
+    <img src="assets/imgs/logo_medium.png" alt="SpinalCom" style="height: 42px;margin-top: 4px;" />
+    <span class="caret" ng-if="connected"></span>
+  </a>
+    <ul class="dropdown-menu"
+        ng-if="connected">
+      <menu-glayout info="layouts"></menu-glayout>
+      <li role="separator"
+          class="divider"
+          ng-if="layouts.length != 0"></li>
+      <li>
+        <a ng-click="logout()">Disconnect</a>
+      </li>
+    </ul>
+    <div flex></div>
+    <div ng-if="connected"
+         style="right:0;">
+      <span style="vertical-align: sub;">{{username}}</span>
+      <md-button class="md-fab"
+                 aria-label="btn.label"
+                 style="height: 40px; width: 40px;"
+                 ng-click="clickUser()">
+        <ng-md-icon icon="person"
+                    style="fill:white; height: 24px;"
+                    class=""></ng-md-icon>
+      </md-button>
+
+    </div>
+  </section>
+  </section>
+</md-toolbar>

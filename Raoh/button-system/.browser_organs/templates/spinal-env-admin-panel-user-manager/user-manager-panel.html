@@ -1,0 +1,65 @@
+<style>
+  .md-button.md-altTheme-theme.md-fab[disabled]>ng-md-icon {
+    fill: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .md-dialog-content {
+    background-color: #212121;
+  }
+
+  .md-dialog-backdrop:nth-of-type(even) {
+    z-index: 81;
+  }
+
+  .md-dialog-backdrop:nth-of-type(odd) {
+    z-index: 79;
+  }
+
+  .md-dialog-container:nth-of-type(even) {
+    z-index: 82;
+  }
+
+  .md-dialog-container:nth-of-type(odd) {
+    z-index: 80;
+  }
+</style>
+<md-list class="">
+  <md-list-item class="md-1-line"
+                style="padding: 0 8px;">
+    <section layout="row"
+             layout-sm="column"
+             layout-align="center center"
+             layout-wrap>
+      <md-button ng-repeat="btn in mainMenuBtn"
+                 ng-if="showMainBtn(btn)"
+                 class="md-fab"
+                 aria-label="btn.label"
+                 style="height: 40px; width: 40px;"
+                 ng-click="mainMenuClick(btn)">
+        <ng-md-icon icon="{{btn.icon}}"
+                    style="fill:white; height: 24px;"
+                    class=""></ng-md-icon>
+      </md-button>
+    </section>
+  </md-list-item>
+  <md-subheader class="md-no-sticky">Users List</md-subheader>
+  <md-list-item ng-repeat="person in users"
+                class="md-2-line"
+                ng-attr-style="{{selectedStyle(person)}}">
+    <ng-md-icon icon="{{getUserIcon(person)}}"
+                ng-click="clickUserIcon(person)"
+                style="fill:white; margin: auto 10px auto 0px; height: 24px; width: 24px;"
+                options='{"duration": 375, "rotation": "none"}'
+                class="md-avatar-icon"></ng-md-icon>
+    <div class="md-list-item-text">
+      <h3>{{ person.name }}</h3>
+      <h4>{{ getUserTypeString(person) }}</h4>
+      <p>{{ person.id }}</p>
+    </div>
+    <ng-md-icon icon="edit"
+                style="fill:white; height: 24px;"
+                ng-click="editUser(person)"
+                aria-label="editUser"
+                class="md-secondary"></ng-md-icon>
+  </md-list-item>
+</md-list>
